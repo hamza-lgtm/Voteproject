@@ -8,8 +8,10 @@ import java.net.Socket;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
+
 public class VoteServer {
     private ServerSocket serverSocket;
+    private static final String TOPIC = "foobar";
 
     public VoteServer(int port) {
         try {
@@ -69,12 +71,14 @@ public class VoteServer {
                 String vote = (String) in.readObject();
                 System.out.println("Received vote from user " + username + ": " + vote);
     
-                // Here, add logic to record the vote
+                // Here, add logic to record the ve
 
-                
 
-                
-                 
+                KafkaProducerService kafkaProducerService = new KafkaProducerService();
+                kafkaProducerService.sendVoteToKafka(vote,TOPIC);
+
+
+
 
                 // For example, update a database or a file
                 System.out.println("Vote recorded successfully");
@@ -87,6 +91,7 @@ public class VoteServer {
         } catch (Exception e) {
             System.err.println("An error occurred while handling a client.");
             e.printStackTrace();
+
         } finally {
             try {
                 if (clientSocket != null && !clientSocket.isClosed()) {

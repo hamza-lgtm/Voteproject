@@ -5,7 +5,7 @@ import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import java.util.Properties;
 
-public class KafkaProducerService {
+public class KafkaProducerServicel {
     private static final String KAFKA_BROKER = "localhost:9092";  // Replace with your Kafka broker address
 
     public static void sendVoteToKafka(String vote, String topic) {
