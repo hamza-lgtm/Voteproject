@@ -1,4 +1,4 @@
-package org.example.server;
+package org.server;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.RemoteException;
 import java.util.HashMap;
