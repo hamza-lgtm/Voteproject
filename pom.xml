@@ -13,7 +13,7 @@
         <maven.compiler.target>20</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <!-- Add your dependencies here -->
+
     <dependencies>
         <!-- Kafka client dependency -->
         <dependency>
@@ -21,17 +21,19 @@
             <artifactId>kafka-clients</artifactId>
             <version>3.0.0</version> <!-- Use the appropriate version -->
         </dependency>
-
         <dependency>
-
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
         </dependency>
 
+        <!-- Logback Classic (SLF4J's native implementation) -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <!-- Add other dependencies here if necessary -->
     </dependencies>
-
 
 </project>

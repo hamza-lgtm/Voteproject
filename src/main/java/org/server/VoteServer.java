@@ -11,6 +11,7 @@ import java.rmi.registry.LocateRegistry;
 
 public class VoteServer {
     private ServerSocket serverSocket;
+
     private static final String TOPIC = "foobar";
 
     public VoteServer(int port) {
@@ -47,30 +48,30 @@ public class VoteServer {
 
     private void handleClient(Socket clientSocket) {
         try (
-            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())
+                ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+                ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())
         ) {
             // Receive voter credentials from the client
             String username = (String) in.readObject();
             String password = (String) in.readObject();
-    
+
             // Use RMI service for authentication
-          
+
             AuthenticationService authenticationService = new AuthenticationServiceImpl();
             LocateRegistry.createRegistry(9003); // RMI registry port
             Naming.rebind("rmi://localhost:9003/authentication", authenticationService);
-            
+
             boolean isAuthenticated = authenticationService.authenticate(username, password);
-    
+
             // Send authentication result to the client
             System.out.println("Authentication result for user " + username + ": " + isAuthenticated);
             if (isAuthenticated) {
                 out.writeObject("Authentication successful");
-    
+
                 // Receive and process the vote
                 String vote = (String) in.readObject();
                 System.out.println("Received vote from user " + username + ": " + vote);
-    
+
                 // Here, add logic to record the ve
 
 
@@ -87,7 +88,7 @@ public class VoteServer {
                 out.writeObject("Authentication failed");
                 System.out.println("Authentication failed for user " + username);
             }
-    
+
         } catch (Exception e) {
             System.err.println("An error occurred while handling a client.");
             e.printStackTrace();
@@ -103,7 +104,7 @@ public class VoteServer {
             }
         }
     }
-    
+
 
     public static void main(String[] args) {
         int port = 9002;
