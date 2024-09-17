@@ -9,8 +9,8 @@ import java.util.Collections;
 import java.util.Properties;
 
 public class KafkaConsumerExample {
-    private static final String KAFKA_BROKER = "your-kafka-broker:9092";  // Replace with your Kafka broker address
-    private static final String TOPIC = "your-topic";  // Replace with your Kafka topic
+    private static final String KAFKA_BROKER = "localhost:9092";  // Replace with your Kafka broker address
+    private static final String TOPIC = "foobar";  // Replace with your Kafka topic
 
     public static void main(String[] args) {
         Properties properties = new Properties();
